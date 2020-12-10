@@ -6,6 +6,8 @@ import SmallColoredLights from "./SmallColoredLights";
 import PhotoDisplay from "./PhotoDisplay";
 import Gamepad from "./GamePad";
 import RandomGenerator from "./RandomGenerator";
+import InfoDisplay from "./InfoDisplay";
+import Buttons from "./Buttons";
 
 const Pokedex = () => {
   return (
@@ -20,6 +22,7 @@ const Pokedex = () => {
             <div className="main-border">
               <div className="display d1"></div>
               <PhotoDisplay />
+
               <RandomGenerator />
               <Gamepad />
               {/* <!-- end of main-border --> */}
@@ -35,25 +38,11 @@ const Pokedex = () => {
           <div className="cylinder-after"></div>
           <div className="flip">
             <div className="main-border">
-              <div className="screen"></div>
-              <div className="screen"></div>
-              <div className="screen"></div>
+              <InfoDisplay />
+              <button className="screen"></button>
 
               <Search />
-              <button className="white-button under2">
-                <div className="btn"></div>
-                <div className="btn"></div>
-              </button>
-              <div className="white-button">
-                <div className="btn"></div>
-                <div className="btn"></div>
-              </div>
-              <div className="lights">
-                <div className="light-indi"></div>
-                <div className="light-indi"></div>
-              </div>
-
-              <button className="golden-button"></button>
+              <Buttons />
 
               {/* <!-- end of main border --> */}
             </div>
