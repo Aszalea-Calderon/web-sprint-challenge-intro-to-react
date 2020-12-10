@@ -3,10 +3,13 @@ import Search from "./Search";
 import DarkBlueBar from "./DarkBlueBar";
 import LargeLights from "./LargeLights";
 import SmallColoredLights from "./SmallColoredLights";
+import PhotoDisplay from "./PhotoDisplay";
+import Gamepad from "./GamePad";
+import RandomGenerator from "./RandomGenerator";
+
 const Pokedex = () => {
   return (
     <div>
-      {" "}
       <div className="box">
         <div className="pokedex">
           <div className="outer">
@@ -16,47 +19,9 @@ const Pokedex = () => {
 
             <div className="main-border">
               <div className="display d1"></div>
-              <div className="display">
-                <div className="indicators">
-                  <div className="light"></div>
-                  <div className="light"></div>
-                </div>
-                <div className="screen"></div>
-                <div className="power-light"></div>
-                <div className="stripes">
-                  <div className="stripe"></div>
-                  <div className="stripe"></div>
-                  <div className="stripe"></div>
-                  <div className="stripe"></div>
-                  <div className="stripe"></div>
-                </div>
-                {/* <!-- end of display --> */}
-              </div>
-
-              <div className="power-button"></div>
-              <div className="lights">
-                <div className="light-indi red"></div>
-                <div className="light-indi blue"></div>
-              </div>
-              <button className="green-box">Random Pokemon</button>
-              {/* Game pad */}
-              <div className="movement">
-                <div className="left">
-                  <div className="triangle"></div>
-                </div>
-                <div className="right">
-                  <div className="triangle"></div>
-                </div>
-                <div className="up">
-                  <div className="triangle"></div>
-                </div>
-                <div className="down">
-                  <div className="triangle"></div>
-                </div>
-                <div className="circle">
-                  <div className="small-circle"></div>
-                </div>
-              </div>
+              <PhotoDisplay />
+              <RandomGenerator />
+              <Gamepad />
               {/* <!-- end of main-border --> */}
             </div>
             <div className="main-border3"></div>
