@@ -1,11 +1,16 @@
 import React from "react";
 
-const PhotoScreen = () => {
-  return (
-    <div>
-      <section className="screen"></section>
-    </div>
-  );
+const PhotoScreen = (props) => {
+	return (
+		<div>
+			<section className="screen">
+
+
+				<img src={props.url ?? props.backup} alt={props.url ? "primary" : "backup"} />
+
+			</section>
+		</div>
+	);
 };
 
 export default PhotoScreen;
