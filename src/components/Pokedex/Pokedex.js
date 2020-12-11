@@ -21,11 +21,11 @@ const initialState = {
 
 
 const Pokedex = () => {
-	const [name, setName] = useState([]);
-	const [height, setHeight] = useState([]);
-	const [weight, setWeight] = useState([]);
-	const [base, setBase] = useState([]);
-	const [type, setType] = useState([]);
+	// const [name, setName] = useState([]);
+	// const [height, setHeight] = useState([]);
+	// const [weight, setWeight] = useState([]);
+	// const [base, setBase] = useState([]);
+	// const [type, setType] = useState([]);
 
 	const [search, setSearch] = useState("pikachu");
 	const [pokemon, setPokemon] = useState(initialState);
@@ -41,10 +41,16 @@ const Pokedex = () => {
 	};
 
 	const hgmToLbs = (hectograms) => {
-		return hectograms / 4.536;
+		const double = hectograms / 4.536;
+		return double.toFixed(0);
 	}
 	const dmToFt = (decimeters) => {
-		return decimeters / 3.048;
+		const double = decimeters / 3.048;
+		return double.toFixed(0);
+	}
+	const fireRandom = (randomNumber) => {
+		setSearch(randomNumber);
+		setLoading(true);
 	}
 
 
@@ -60,6 +66,8 @@ const Pokedex = () => {
 
 	useEffect(() => {
 		if (loading) {
+			const url = `https://pokeapi.co/api/v2/pokemon/${search}`;
+
 			axios
 				// .get(`https://pokeapi.co/api/v2/pokemon/${search}`)
 				.get(`https://pokeapi.co/api/v2/pokemon/${search}`)
@@ -77,6 +85,7 @@ const Pokedex = () => {
 					});
 				})
 				.catch((err) => {
+					console.log(url);
 					console.error(err, "error");
 				});
 		}
@@ -128,7 +137,7 @@ const Pokedex = () => {
 							{/*
 							 <PhotoDisplay url={someState} /> 
 							*/}
-							<RandomGenerator />
+							<RandomGenerator fireRandom={fireRandom} />
 							<Gamepad />
 							{/* <!-- end of main-border --> */}
 						</div>
