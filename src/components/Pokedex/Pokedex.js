@@ -1,5 +1,4 @@
-import React from "react";
-import Search from "./Search";
+import React, { useState } from "react";
 import DarkBlueBar from "./DarkBlueBar";
 import LargeLights from "./LargeLights";
 import SmallColoredLights from "./SmallColoredLights";
@@ -8,8 +7,48 @@ import Gamepad from "./GamePad";
 import RandomGenerator from "./RandomGenerator";
 import InfoDisplay from "./InfoDisplay";
 import Buttons from "./Buttons";
+import axios from "axios";
 
 const Pokedex = () => {
+  const [search, setSearch] = useState("");
+  const [name, setName] = useState([]);
+  const [height, setHeight] = useState([]);
+  const [weight, setWeight] = useState([]);
+  const [base, setBase] = useState([]);
+  const [type, setType] = useState([]);
+  // const [types, setTypes] = useState([]);
+  // const [photo, setPhoto] = useState[[]];
+
+  const change = (event) => {
+    const { value } = event.target;
+    setSearch(value.toLowerCase());
+    // console.log(search);
+  };
+
+  //onSubmit we are preventing the default reload of the page, setting
+  const submit = (e) => {
+    e.preventDefault();
+    // setDidSearch(true);
+    console.log("submitted!");
+
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${search}`)
+      .then((res) => {
+        setName(res.data.forms[0].name);
+        setHeight(res.data.height);
+        setWeight(res.data.weight);
+        setBase(res.data.base_experience);
+        setType(res.data.types[0].type.name);
+        // setPhoto(
+        //   res.data.sprites.versions["generation-v"]["black-white"].animated
+        //     .front_default
+        // );
+      })
+      .catch((err) => {
+        console.error(err, "error");
+      });
+  };
+
   return (
     <div>
       <div className="box">
@@ -21,8 +60,7 @@ const Pokedex = () => {
 
             <div className="main-border">
               <div className="display d1"></div>
-              <PhotoDisplay />
-
+              <PhotoDisplay /> {/*photo={photo} />*/}
               <RandomGenerator />
               <Gamepad />
               {/* <!-- end of main-border --> */}
@@ -38,10 +76,31 @@ const Pokedex = () => {
           <div className="cylinder-after"></div>
           <div className="flip">
             <div className="main-border">
-              <InfoDisplay />
+              <InfoDisplay
+                name={name}
+                height={height}
+                weight={weight}
+                base={base}
+                type={type}
+              />
               <button className="screen"></button>
 
-              <Search />
+              <div>
+                <form onSubmit={submit}>
+                  <input
+                    type="text"
+                    name="searchBar"
+                    value={search.name}
+                    onChange={change}
+                    id="search"
+                    placeholder="Search Pokemon"
+                    className="blue-buttons"
+                  ></input>
+                  <button className="searchButton" type="submit">
+                    Search
+                  </button>
+                </form>
+              </div>
               <Buttons />
 
               {/* <!-- end of main border --> */}

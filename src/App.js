@@ -11,6 +11,10 @@ const App = () => {
   // side effect in a component, you want to think about which state and/or props it should
   // sync up with, if any.
 
+  //Things to do
+  //Make starting call via search bar
+  //set the data coming in
+
   return (
     <>
       <Pokedex />
